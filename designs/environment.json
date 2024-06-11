@@ -1,0 +1,65 @@
+{
+    "TYPE": {
+        "name": "TYPE",
+        "properties": {
+            "production": "client",
+            "ssdURL": "client",
+            "tenantName": "client",
+            "appName": "client",
+            "namespace": "client",
+            "useDefaultExceptionUI": "client",
+            "isIDSEnabled": "client",
+            "SSD_BASE_PATH": "server",
+            "SSD_DEFAULT_PORT": "server",
+            "webAppMountpoint": "both",
+            "CLOCK_TOLERANCE": "server",
+            "NGFORAGE_MOBILE_DRIVER": "client",
+            "mongodbUrl": "server",
+            "gmail_userid": "server",
+            "gmail_appPassword": "server",
+            "local": "server"
+        }
+    },
+    "dev": {
+        "name": "dev",
+        "properties": {
+            "production": false,
+            "ssdURL": "http://localhost:8081/api/",
+            "tenantName": "neutrinos-delivery",
+            "appName": "fnb-backend",
+            "namespace": "com.neutrinos-delivery.fnb-backend",
+            "useDefaultExceptionUI": true,
+            "isIDSEnabled": "false",
+            "SSD_BASE_PATH": "/api",
+            "SSD_DEFAULT_PORT": "8081",
+            "webAppMountpoint": "web",
+            "CLOCK_TOLERANCE": "5",
+            "NGFORAGE_MOBILE_DRIVER": "INDEXED_DB",
+            "mongodbUrl": "mongodb://localhost:27017",
+            "gmail_userid": "edwardthupane80@gmail.com",
+            "gmail_appPassword": "kifk mzmq ifjh qbmj",
+            "local": "mongodb://localhost:27017"
+        }
+    },
+    "prod": {
+        "name": "prod",
+        "properties": {
+            "production": true,
+            "ssdURL": "http://localhost:8081/api/",
+            "tenantName": "neutrinos-delivery",
+            "appName": "fnb-backend",
+            "namespace": "com.neutrinos-delivery.fnb-backend",
+            "useDefaultExceptionUI": true,
+            "isIDSEnabled": "false",
+            "SSD_BASE_PATH": "/api",
+            "SSD_DEFAULT_PORT": "8081",
+            "webAppMountpoint": "web",
+            "CLOCK_TOLERANCE": "5",
+            "NGFORAGE_MOBILE_DRIVER": "INDEXED_DB",
+            "mongodbUrl": "mongodb://localhost:27017",
+            "gmail_userid": "edwardthupane80@gmail.com",
+            "gmail_appPassword": "kifk mzmq ifjh qbmj",
+            "local": "mongodb://localhost:27017"
+        }
+    }
+}

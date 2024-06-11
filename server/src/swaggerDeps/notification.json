@@ -1,0 +1,41 @@
+{
+    "/get-notifications": {
+        "get": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [],
+            "responses": {},
+            "tags": [
+                "notification"
+            ]
+        }
+    },
+    "/delete-notification": {
+        "delete": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [],
+            "responses": {},
+            "tags": [
+                "notification"
+            ]
+        }
+    },
+    "/update-notification": {
+        "put": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [],
+            "responses": {},
+            "tags": [
+                "notification"
+            ]
+        }
+    }
+}

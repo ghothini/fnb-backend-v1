@@ -1,0 +1,509 @@
+[
+    {
+        "id": "SSD_SERVICE_ID_sd_9tX9GsWpH4qrccZC",
+        "type": "tab",
+        "createdDate": "2024-06-04T14:33:50.870Z",
+        "label": "limits",
+        "disabled": false,
+        "info": "",
+        "functionSeq": 0,
+        "generateNext": true,
+        "serviceName": "limits",
+        "relativeParentPath": ""
+    },
+    {
+        "id": "sd_QtlDMSU9lk5bsKem",
+        "type": "HttpIn",
+        "z": "SSD_SERVICE_ID_sd_9tX9GsWpH4qrccZC",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "Get each limits",
+        "path": "/get-limit/:_id",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "get",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "useDataModel": false,
+        "dataModelIsArray": false,
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "responses": [],
+            "params": [
+                {
+                    "key": "ID",
+                    "desc": "To download file",
+                    "type": "query",
+                    "required": true,
+                    "rowId": "sd_pMkLwPYFBYVimqhE",
+                    "valid": true
+                }
+            ],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
+        "category": "HTTP",
+        "x": 65,
+        "y": 120,
+        "wires": [
+            [
+                "sd_AjyRzkUhRTsYlMni"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "uploadpath": {
+                "type": "str",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "limits",
+        "functionName": "sd_QtlDMSU9lk5bsKem"
+    },
+    {
+        "id": "sd_AjyRzkUhRTsYlMni",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_9tX9GsWpH4qrccZC",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "bh.search = {\n    collection: 'limits'\n}\n\n",
+        "functionName": "sd_AjyRzkUhRTsYlMni",
+        "category": "Function",
+        "x": 145,
+        "y": 120,
+        "wires": [
+            [
+                "sd_FucKAIdIiJtK41G1"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "limits",
+        "generated": true
+    },
+    {
+        "id": "sd_FucKAIdIiJtK41G1",
+        "type": "CallService",
+        "z": "SSD_SERVICE_ID_sd_9tX9GsWpH4qrccZC",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "outputs": 1,
+        "isValidNode": true,
+        "noerr": 0,
+        "service": {
+            "id": "SSD_SERVICE_ID_sd_rnBmVBMNMAATcuPX",
+            "type": "tab",
+            "createdDate": "2024-05-13T10:00:34.161Z",
+            "label": "auth",
+            "disabled": false,
+            "info": "",
+            "functionSeq": 0
+        },
+        "flow": {
+            "flowId": "sd_ygLudNMItp9Xqotm",
+            "flowName": "checkIfExist"
+        },
+        "inputVariables": [
+            {
+                "key": "searchObj",
+                "map": true,
+                "valueType": "bh",
+                "value": "search"
+            }
+        ],
+        "bhVariables": [],
+        "outputMapping": [
+            {
+                "mapVarType": "local",
+                "key": "result",
+                "valueType": "bh",
+                "value": "result",
+                "mapVarName": "result",
+                "localVar": "bh.result"
+            }
+        ],
+        "callService": "./auth",
+        "startName": "checkIfExist",
+        "inputParams": [
+            "bh.search"
+        ],
+        "accept_bh": false,
+        "functionName": "sd_FucKAIdIiJtK41G1",
+        "category": "General",
+        "x": 225,
+        "y": 120,
+        "wires": [
+            [
+                "sd_tzqVcUoag4QRpha8"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "limits",
+        "generated": true
+    },
+    {
+        "id": "sd_tzqVcUoag4QRpha8",
+        "type": "Switch",
+        "z": "SSD_SERVICE_ID_sd_9tX9GsWpH4qrccZC",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "property": "result",
+        "propertyType": "bh",
+        "propertyGv": "bh.result",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "functionName": "sd_tzqVcUoag4QRpha8",
+        "category": "Function",
+        "x": 305,
+        "y": 120,
+        "wires": [
+            [
+                "sd_4lwsCLYHA4Ictn4N"
+            ],
+            [
+                "sd_7ae3iVdl9cZpzkWO"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "limits",
+        "generated": true
+    },
+    {
+        "id": "sd_4lwsCLYHA4Ictn4N",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_9tX9GsWpH4qrccZC",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "bh.result = bh.result;\nbh.filter = { '_id': bh.input.params._id};\nbh.data;\nconst data = bh.result.map(_data =>{ return _data._id});\n\nfor(let i = 0;i<=data.length - 1;i++)\n{\n    if(data[i] == bh.filter._id)\n    {\n        console.log(\"finally !!!\", bh.result[i])\n        bh.data = bh.result[i];\n    }\n}\n\n    console.log(\"i data \",bh.data)\n\n",
+        "functionName": "sd_4lwsCLYHA4Ictn4N",
+        "category": "Function",
+        "x": 405,
+        "y": 80,
+        "wires": [
+            [
+                "sd_i8glpJhLEHGA7lnP"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "limits",
+        "generated": true
+    },
+    {
+        "id": "sd_7ae3iVdl9cZpzkWO",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_9tX9GsWpH4qrccZC",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "bh.result = {\n    message:\"No limit found\"\n}",
+        "functionName": "sd_7ae3iVdl9cZpzkWO",
+        "category": "Function",
+        "x": 405,
+        "y": 160,
+        "wires": [
+            [
+                "sd_i8glpJhLEHGA7lnP"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "limits",
+        "generated": true
+    },
+    {
+        "id": "sd_i8glpJhLEHGA7lnP",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_9tX9GsWpH4qrccZC",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh",
+            "value": "data",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "num",
+            "value": 200,
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": 200,
+            "obj": "bh.data",
+            "send": "bh.data"
+        },
+        "dataModelIsArray": false,
+        "cookies": [],
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_i8glpJhLEHGA7lnP",
+        "category": "HTTP",
+        "x": 540,
+        "y": 120,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "limits",
+        "generated": true
+    },
+    {
+        "id": "sd_Po6gqTfoWpS7kxAT",
+        "type": "HttpIn",
+        "z": "SSD_SERVICE_ID_sd_9tX9GsWpH4qrccZC",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "Update limits",
+        "path": "/update-limits",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "put",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "useDataModel": false,
+        "dataModelIsArray": false,
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
+        "category": "HTTP",
+        "x": 90,
+        "y": 261.46875,
+        "wires": [
+            [
+                "sd_j32e2wA0psjlXOql"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "uploadpath": {
+                "type": "str",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "limits",
+        "functionName": "sd_Po6gqTfoWpS7kxAT"
+    },
+    {
+        "id": "sd_j32e2wA0psjlXOql",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_9tX9GsWpH4qrccZC",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "bh.filter = { 'email': bh.input.body['email'] };\n\ndelete bh.input.body.collection;\n\nbh.body = {$set: bh.input.body};",
+        "functionName": "sd_j32e2wA0psjlXOql",
+        "category": "Function",
+        "x": 210,
+        "y": 261.46875,
+        "wires": [
+            [
+                "sd_1ur1tDrEDacKnI4v"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "limits",
+        "generated": true
+    },
+    {
+        "id": "sd_1ur1tDrEDacKnI4v",
+        "type": "Mongodb",
+        "z": "SSD_SERVICE_ID_sd_9tX9GsWpH4qrccZC",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "databaseConfig": "sd_ajFrSs3mQRYSN97Z",
+        "collection": "\"limits\"",
+        "options": "bh.option",
+        "resultMapping": "bh.result",
+        "operation": "findOneAndUpdate",
+        "argumentArray": [
+            "filter",
+            "update",
+            "options"
+        ],
+        "aggregate": "",
+        "operations": "",
+        "query": "bh.query",
+        "fieldOrSpec": "",
+        "filter": "bh.filter",
+        "key": "",
+        "docId": "",
+        "indexName": "",
+        "replacement": "",
+        "update": "bh.body",
+        "xAxis": "",
+        "yAxis": "",
+        "indexes": "",
+        "docs": "",
+        "document": "",
+        "newName": "",
+        "doc": "",
+        "filePath": "",
+        "fileName": "",
+        "pipeline": "",
+        "functionName": "sd_1ur1tDrEDacKnI4v",
+        "category": "Storage",
+        "x": 330,
+        "y": 261.46875,
+        "wires": [
+            [
+                "sd_RvjevUy9wOStSQ3L"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "collection": {
+                "type": "str",
+                "value": "limits",
+                "constant": false
+            },
+            "options": {
+                "type": "bh",
+                "value": "option",
+                "constant": false
+            },
+            "resultMapping": {
+                "type": "bh",
+                "value": "result",
+                "constant": false
+            },
+            "query": {
+                "type": "bh",
+                "value": "query",
+                "constant": false
+            },
+            "filter": {
+                "type": "bh",
+                "value": "filter",
+                "constant": false
+            },
+            "update": {
+                "type": "bh",
+                "value": "body",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "limits",
+        "generated": true
+    },
+    {
+        "id": "sd_RvjevUy9wOStSQ3L",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_9tX9GsWpH4qrccZC",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh",
+            "value": "result",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "num",
+            "value": 200,
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": 200,
+            "obj": "bh.result",
+            "send": "bh.result"
+        },
+        "dataModelIsArray": false,
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_RvjevUy9wOStSQ3L",
+        "category": "HTTP",
+        "x": 490,
+        "y": 261.46875,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "limits",
+        "generated": true
+    }
+]

@@ -1,0 +1,13 @@
+{
+    "displayName": "FNB-Backend",
+    "appName": "fnb-backend",
+    "description": "Fnb backend ",
+    "lastModified": "2024-05-13T09:30:16.449Z",
+    "imgSourcePath": "",
+    "version": "1.0.0",
+    "appType": "apiOnly",
+    "templateName": "blank",
+    "createDate": "2024-05-13T09:30:02.077Z",
+    "analyticsId": "a02577f2-505a-cd2e-1c30-240f404731bd",
+    "createdStudioVersion": "9.2.1"
+}
