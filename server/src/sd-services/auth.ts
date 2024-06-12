@@ -668,8 +668,8 @@ export class auth {
       )
     );
 
-    this.app['post'](
-      `${this.serviceBasePath}/`,
+    this.app['get'](
+      `${this.serviceBasePath}/test`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
         null,
@@ -930,7 +930,6 @@ export class auth {
         bh.option
       );
       this.tracerService.sendData(spanInst, bh);
-      bh = await this.sendEmail(bh, parentSpanInst);
       //appendnew_next_sd_tWvi321XyzGdzHq1
       return bh;
     } catch (e) {
@@ -940,90 +939,6 @@ export class auth {
         'sd_tWvi321XyzGdzHq1',
         spanInst,
         'sd_tWvi321XyzGdzHq1'
-      );
-    }
-  }
-
-  async sendEmail(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan('sendEmail', parentSpanInst);
-    try {
-      bh.status = 200;
-      bh.payload = {
-        to: bh.input.body.email,
-        subject: 'FNB ACCOUNT',
-        from: 'FNB',
-        ptag: `<p>Your Account has been created successfully</p>
-    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/First_National_Bank_Logo.svg/1200px-First_National_Bank_Logo.svg.png" alt="Example Image" width="250" height="100"  class="image">
-    `,
-      };
-      this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_3H8LefEtmRLAuSHY(bh, parentSpanInst);
-      //appendnew_next_sendEmail
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_IqRDFPTyLhPvUIrA',
-        spanInst,
-        'sendEmail'
-      );
-    }
-  }
-
-  async sd_3H8LefEtmRLAuSHY(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_3H8LefEtmRLAuSHY',
-      parentSpanInst
-    );
-    try {
-      let mailConfigObj = this.sdService.getConfigObj(
-        'emailout-config',
-        'sd_Y7tj22emRRoCDJdJ'
-      );
-      let server = mailConfigObj.server;
-      let port = mailConfigObj.port;
-      let secure = mailConfigObj.secure;
-      let tls = mailConfigObj.tls;
-      let userid = mailConfigObj.userid;
-      let password = mailConfigObj.password;
-      let emailServiceInstance = EmailOutService.getInstance();
-      bh.result = await emailServiceInstance.sendEmail(
-        {
-          server,
-          port,
-          secure,
-          tls,
-        },
-        {
-          userid,
-          password,
-          to: bh.payload.to,
-          subject: bh.payload.subject,
-          body: bh.payload.body,
-          cc: undefined,
-          bcc: undefined,
-          from: bh.payload.from,
-          html: bh.payload.ptag,
-          iCal: undefined,
-          routingOptions: undefined,
-          contentOptions: undefined,
-          securityOptions: undefined,
-          headerOptions: undefined,
-          attachments: [],
-        }
-      );
-      this.tracerService.sendData(spanInst, bh);
-      await this.sd_TVW1YChwcueLIbBM(bh, parentSpanInst);
-      //appendnew_next_sd_3H8LefEtmRLAuSHY
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_3H8LefEtmRLAuSHY',
-        spanInst,
-        'sd_3H8LefEtmRLAuSHY'
       );
     }
   }
