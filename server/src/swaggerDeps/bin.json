@@ -24,5 +24,18 @@
                 "bin"
             ]
         }
+    },
+    "/restore-from-bin": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [],
+            "responses": {},
+            "tags": [
+                "bin"
+            ]
+        }
     }
 }
