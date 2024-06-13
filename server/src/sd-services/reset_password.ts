@@ -160,8 +160,6 @@ export class reset_password {
         query: { email: bh.input.body.email },
         collection: 'users',
       };
-
-      bh.newPassword = bh.input.body.newPassword;
       this.tracerService.sendData(spanInst, bh);
       bh = await this.sd_pfLFrrHIWoFVUwXf(bh, parentSpanInst);
       //appendnew_next_sd_kFZUqNBs4xIRZrxj
@@ -246,28 +244,15 @@ export class reset_password {
     );
     try {
       const bcrypt = require('bcrypt');
+      bh.status = 200;
       bh.result = bh.result[0];
-      console.log('Res', bh.result);
       bh.filter = { email: bh.input.body['email'] };
       bh.input.body = {
-        ...bh.result[0],
+        ...bh.result,
       };
-      const hashedPassword = await bcrypt.hash(bh.newPassword, 10);
-
-      console.log('Hash pas', bh.input.body['password']);
+      const hashedPassword = await bcrypt.hash(bh.input.body.password, 10);
+      bh.input.body.password = hashedPassword;
       bh.body = { $set: bh.input.body };
-      bh.input.body['password'] = hashedPassword;
-
-      bh.payload = {
-        to: bh.input.body.email,
-        subject: 'Forgot Password',
-        from: 'FNB',
-        ptag: `<p>Your OTP is ${bh.input.body.OTP}</p>
-    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/First_National_Bank_Logo.svg/1200px-First_National_Bank_Logo.svg.png" alt="Example Image" width="250" height="100"  class="image">
-    `,
-      };
-
-      bh.status = 200;
       this.tracerService.sendData(spanInst, bh);
       bh = await this.sd_QKmfHf5v1iAoJIMR(bh, parentSpanInst);
       //appendnew_next_sd_Mzuc8dcrua2ZX4pf
@@ -331,8 +316,6 @@ export class reset_password {
       bh.result = {
         message: 'User dont exist',
       };
-
-      console.log('user dnt exist');
       this.tracerService.sendData(spanInst, bh);
       await this.sd_RPndJY79VYCClCbL(bh, parentSpanInst);
       //appendnew_next_sd_MyZhoKNk9mm7xuGi
