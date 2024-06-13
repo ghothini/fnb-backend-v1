@@ -245,11 +245,7 @@ export class reset_password {
     try {
       const bcrypt = require('bcrypt');
       bh.status = 200;
-      bh.result = bh.result[0];
       bh.filter = { email: bh.input.body['email'] };
-      bh.input.body = {
-        ...bh.result,
-      };
       const hashedPassword = await bcrypt.hash(bh.input.body.password, 10);
       bh.input.body.password = hashedPassword;
       bh.body = { $set: bh.input.body };
