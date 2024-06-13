@@ -2033,7 +2033,6 @@ export class auth {
         bh.option
       );
       this.tracerService.sendData(spanInst, bh);
-      await this.sd_acRYmMlvavd7AcXM(bh, parentSpanInst);
       //appendnew_next_sd_svRXiAApQWbrqqla
       return bh;
     } catch (e) {
@@ -2044,16 +2043,6 @@ export class auth {
         spanInst,
         'sd_svRXiAApQWbrqqla'
       );
-    }
-  }
-
-  async sd_acRYmMlvavd7AcXM(bh, parentSpanInst) {
-    try {
-      bh.web.res.status(200).send(bh.result);
-
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(bh, e, 'sd_acRYmMlvavd7AcXM');
     }
   }
 
@@ -3187,7 +3176,6 @@ export class auth {
     `,
       };
       this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_CQzJhhRKoxIiX8E2(bh, parentSpanInst);
       //appendnew_next_sd_RzdeRhZUNrzZz2fa
       return bh;
     } catch (e) {
@@ -3198,73 +3186,6 @@ export class auth {
         spanInst,
         'sd_RzdeRhZUNrzZz2fa'
       );
-    }
-  }
-
-  async sd_CQzJhhRKoxIiX8E2(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_CQzJhhRKoxIiX8E2',
-      parentSpanInst
-    );
-    try {
-      let mailConfigObj = this.sdService.getConfigObj(
-        'emailout-config',
-        'sd_Y7tj22emRRoCDJdJ'
-      );
-      let server = mailConfigObj.server;
-      let port = mailConfigObj.port;
-      let secure = mailConfigObj.secure;
-      let tls = mailConfigObj.tls;
-      let userid = mailConfigObj.userid;
-      let password = mailConfigObj.password;
-      let emailServiceInstance = EmailOutService.getInstance();
-      bh.result = await emailServiceInstance.sendEmail(
-        {
-          server,
-          port,
-          secure,
-          tls,
-        },
-        {
-          userid,
-          password,
-          to: bh.payload.to,
-          subject: bh.payload.subject,
-          body: undefined,
-          cc: undefined,
-          bcc: undefined,
-          from: bh.payload.from,
-          html: bh.payload.ptag,
-          iCal: undefined,
-          routingOptions: undefined,
-          contentOptions: undefined,
-          securityOptions: undefined,
-          headerOptions: undefined,
-          attachments: [],
-        }
-      );
-      this.tracerService.sendData(spanInst, bh);
-      await this.sd_zyVI0ok8Al20CB2T(bh, parentSpanInst);
-      //appendnew_next_sd_CQzJhhRKoxIiX8E2
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_CQzJhhRKoxIiX8E2',
-        spanInst,
-        'sd_CQzJhhRKoxIiX8E2'
-      );
-    }
-  }
-
-  async sd_zyVI0ok8Al20CB2T(bh, parentSpanInst) {
-    try {
-      bh.web.res.status(200).send(bh.result);
-
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(bh, e, 'sd_zyVI0ok8Al20CB2T');
     }
   }
 
