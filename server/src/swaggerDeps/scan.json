@@ -11,5 +11,18 @@
                 "scan"
             ]
         }
+    },
+    "/get-scan-payments": {
+        "get": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [],
+            "responses": {},
+            "tags": [
+                "scan"
+            ]
+        }
     }
 }
