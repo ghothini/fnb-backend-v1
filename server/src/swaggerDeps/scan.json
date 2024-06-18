@@ -1,0 +1,15 @@
+{
+    "/scan-payment": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [],
+            "responses": {},
+            "tags": [
+                "scan"
+            ]
+        }
+    }
+}
