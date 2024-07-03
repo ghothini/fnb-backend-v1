@@ -7,10 +7,11 @@ import * as cookieParser from 'cookie-parser'; //_splitter_
 import { SDBaseService } from '../services/SDBaseService'; //_splitter_
 import { TracerService } from '../services/TracerService'; //_splitter_
 import log from '../utils/Logger'; //_splitter_
+import { EmailOutService } from '../utils/ndefault-email/EmailOut/EmailOutService'; //_splitter_
 import { MongoPersistance } from '../utils/ndefault-mongodb/Mongodb/MongoPersistance'; //_splitter_
 import * as SSD_SERVICE_ID_sd_rnBmVBMNMAATcuPX from './auth'; //_splitter_
 //append_imports_end
-export class bin {
+export class scan {
   private sdService = new SDBaseService();
   private tracerService = new TracerService();
   private app;
@@ -26,7 +27,7 @@ export class bin {
     middlewareCall,
     globalTimers
   ) {
-    this.serviceName = 'bin';
+    this.serviceName = 'scan';
     this.app = app;
     this.serviceBasePath = this.app.settings.base;
     this.generatedMiddlewares = generatedeMiddlewares;
@@ -41,7 +42,7 @@ export class bin {
     globalTimers?
   ) {
     if (!instance) {
-      instance = new bin(
+      instance = new scan(
         app,
         generatedeMiddlewares,
         routeCall,
@@ -70,19 +71,19 @@ export class bin {
   }
 
   async mountTimers() {
-    //appendnew_flow_bin_TimerStart
+    //appendnew_flow_scan_TimerStart
   }
 
   private mountAllMiddlewares() {
-    log.debug('mounting all middlewares for service :: bin');
-    //appendnew_flow_bin_MiddlewareStart
+    log.debug('mounting all middlewares for service :: scan');
+    //appendnew_flow_scan_MiddlewareStart
   }
 
   private mountAllPaths() {
-    log.debug('mounting all paths for service :: bin');
+    log.debug('mounting all paths for service :: scan');
 
     this.app['post'](
-      `${this.serviceBasePath}/add-to-bin`,
+      `${this.serviceBasePath}/scan-payment`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
         null,
@@ -100,10 +101,10 @@ export class bin {
             next
           );
           let parentSpanInst = null;
-          bh = await this.sd_xi9TYiguMYVXmLMe(bh, parentSpanInst);
-          //appendnew_next_sd_aho6HdmQRPAH9S5e
+          bh = await this.sd_uTqAOLP9kDsUMA9U(bh, parentSpanInst);
+          //appendnew_next_sd_RwvUxn1sZ64NYgYW
         } catch (e) {
-          return await this.errorHandler(bh, e, 'sd_aho6HdmQRPAH9S5e');
+          return await this.errorHandler(bh, e, 'sd_RwvUxn1sZ64NYgYW');
         }
       },
       this.sdService.getMiddlesWaresBySequenceId(
@@ -114,7 +115,7 @@ export class bin {
     );
 
     this.app['get'](
-      `${this.serviceBasePath}/get-bin`,
+      `${this.serviceBasePath}/get-scan-payments`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
         null,
@@ -132,10 +133,10 @@ export class bin {
             next
           );
           let parentSpanInst = null;
-          bh = await this.sd_mTLNV3ByYE3n7fCk(bh, parentSpanInst);
-          //appendnew_next_sd_xnE5fj8PTyXxK2gx
+          bh = await this.sd_ORuWzMgWXrZsktsB(bh, parentSpanInst);
+          //appendnew_next_sd_RQDnrdIjlCmdRy1T
         } catch (e) {
-          return await this.errorHandler(bh, e, 'sd_xnE5fj8PTyXxK2gx');
+          return await this.errorHandler(bh, e, 'sd_RQDnrdIjlCmdRy1T');
         }
       },
       this.sdService.getMiddlesWaresBySequenceId(
@@ -144,157 +145,190 @@ export class bin {
         this.generatedMiddlewares
       )
     );
-
-    this.app['post'](
-      `${this.serviceBasePath}/restore-from-bin`,
-      cookieParser(),
-      this.sdService.getMiddlesWaresBySequenceId(
-        null,
-        'pre',
-        this.generatedMiddlewares
-      ),
-
-      async (req, res, next) => {
-        let bh: any = {};
-        try {
-          bh = this.sdService.__constructDefault(
-            { local: {}, input: {} },
-            req,
-            res,
-            next
-          );
-          let parentSpanInst = null;
-          bh = await this.sd_ooyjEiltj7BEm6am(bh, parentSpanInst);
-          //appendnew_next_sd_bT7PANSjMjz78Ux7
-        } catch (e) {
-          return await this.errorHandler(bh, e, 'sd_bT7PANSjMjz78Ux7');
-        }
-      },
-      this.sdService.getMiddlesWaresBySequenceId(
-        null,
-        'post',
-        this.generatedMiddlewares
-      )
-    );
-    //appendnew_flow_bin_HttpIn
+    //appendnew_flow_scan_HttpIn
   }
-  //   service flows_bin
+  //   service flows_scan
 
-  //appendnew_flow_bin_start
+  //appendnew_flow_scan_start
 
-  async sd_xi9TYiguMYVXmLMe(bh, parentSpanInst) {
+  async sd_uTqAOLP9kDsUMA9U(bh, parentSpanInst) {
     const spanInst = this.tracerService.createSpan(
-      'sd_xi9TYiguMYVXmLMe',
+      'sd_uTqAOLP9kDsUMA9U',
       parentSpanInst
     );
     try {
-      bh.collection = 'bin-applications';
-      bh.body = {
-        ...bh.input.body,
-      };
+      bh.body = bh.input.body;
       this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_bXbDFf64lIipINwN(bh, parentSpanInst);
-      //appendnew_next_sd_xi9TYiguMYVXmLMe
+      bh = await this.sd_iNWHAyd2lnvsRNm6(bh, parentSpanInst);
+      //appendnew_next_sd_uTqAOLP9kDsUMA9U
       return bh;
     } catch (e) {
       return await this.errorHandler(
         bh,
         e,
-        'sd_xi9TYiguMYVXmLMe',
+        'sd_uTqAOLP9kDsUMA9U',
         spanInst,
-        'sd_xi9TYiguMYVXmLMe'
+        'sd_uTqAOLP9kDsUMA9U'
       );
     }
   }
 
-  async sd_bXbDFf64lIipINwN(bh, parentSpanInst) {
+  async sd_iNWHAyd2lnvsRNm6(bh, parentSpanInst) {
     const spanInst = this.tracerService.createSpan(
-      'sd_bXbDFf64lIipINwN',
+      'sd_iNWHAyd2lnvsRNm6',
       parentSpanInst
     );
     try {
       bh.result = await MongoPersistance.getInstance().insertOne(
         'sd_ajFrSs3mQRYSN97Z',
-        bh.collection,
+        'scan',
         bh.body,
         bh.option,
         bh.option
       );
       this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_GikFSxwoxBI0AaAN(bh, parentSpanInst);
-      //appendnew_next_sd_bXbDFf64lIipINwN
+      bh = await this.sd_86NU4dXfB50Vuq5k(bh, parentSpanInst);
+      //appendnew_next_sd_iNWHAyd2lnvsRNm6
       return bh;
     } catch (e) {
       return await this.errorHandler(
         bh,
         e,
-        'sd_bXbDFf64lIipINwN',
+        'sd_iNWHAyd2lnvsRNm6',
         spanInst,
-        'sd_bXbDFf64lIipINwN'
+        'sd_iNWHAyd2lnvsRNm6'
       );
     }
   }
 
-  async sd_GikFSxwoxBI0AaAN(bh, parentSpanInst) {
+  async sd_86NU4dXfB50Vuq5k(bh, parentSpanInst) {
     const spanInst = this.tracerService.createSpan(
-      'sd_GikFSxwoxBI0AaAN',
+      'sd_86NU4dXfB50Vuq5k',
       parentSpanInst
     );
     try {
+      bh.payload = {
+        to: bh.input.body.email,
+        subject: 'Payment Made',
+        from: 'FNB',
+        ptag: `
+    <p>Payment made R${bh.body.amount}</p>.
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/First_National_Bank_Logo.svg/1200px-First_National_Bank_Logo.svg.png" alt="Example Image" width="250" height="100">
+    `,
+      };
+
+      console.log(bh.payload);
+
       bh.status = 200;
       this.tracerService.sendData(spanInst, bh);
-      await this.sd_Aqd0xZree5Ceyb8K(bh, parentSpanInst);
-      //appendnew_next_sd_GikFSxwoxBI0AaAN
+      bh = await this.sd_xCLHfd1kFRljVi9Z(bh, parentSpanInst);
+      //appendnew_next_sd_86NU4dXfB50Vuq5k
       return bh;
     } catch (e) {
       return await this.errorHandler(
         bh,
         e,
-        'sd_GikFSxwoxBI0AaAN',
+        'sd_86NU4dXfB50Vuq5k',
         spanInst,
-        'sd_GikFSxwoxBI0AaAN'
+        'sd_86NU4dXfB50Vuq5k'
       );
     }
   }
 
-  async sd_Aqd0xZree5Ceyb8K(bh, parentSpanInst) {
-    try {
-      bh.web.res.status(bh.status).send(bh.result);
-
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(bh, e, 'sd_Aqd0xZree5Ceyb8K');
-    }
-  }
-
-  async sd_mTLNV3ByYE3n7fCk(bh, parentSpanInst) {
+  async sd_xCLHfd1kFRljVi9Z(bh, parentSpanInst) {
     const spanInst = this.tracerService.createSpan(
-      'sd_mTLNV3ByYE3n7fCk',
+      'sd_xCLHfd1kFRljVi9Z',
       parentSpanInst
     );
     try {
-      bh.collection = 'bin-applications';
-      bh.search = {
-        collection: 'bin-applications',
-      };
+      let mailConfigObj = this.sdService.getConfigObj(
+        'emailout-config',
+        'sd_Y7tj22emRRoCDJdJ'
+      );
+      let server = mailConfigObj.server;
+      let port = mailConfigObj.port;
+      let secure = mailConfigObj.secure;
+      let tls = mailConfigObj.tls;
+      let userid = mailConfigObj.userid;
+      let password = mailConfigObj.password;
+      let emailServiceInstance = EmailOutService.getInstance();
+      bh.result = await emailServiceInstance.sendEmail(
+        {
+          server,
+          port,
+          secure,
+          tls,
+        },
+        {
+          userid,
+          password,
+          to: bh.payload.to,
+          subject: bh.payload.subject,
+          body: undefined,
+          cc: undefined,
+          bcc: undefined,
+          from: bh.payload.from,
+          html: bh.payload.ptag,
+          iCal: undefined,
+          routingOptions: undefined,
+          contentOptions: undefined,
+          securityOptions: undefined,
+          headerOptions: undefined,
+          attachments: [],
+        }
+      );
       this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_ooMu5H8zQcCoxSbp(bh, parentSpanInst);
-      //appendnew_next_sd_mTLNV3ByYE3n7fCk
+      await this.sd_n4jXOMGtsaexLKge(bh, parentSpanInst);
+      //appendnew_next_sd_xCLHfd1kFRljVi9Z
       return bh;
     } catch (e) {
       return await this.errorHandler(
         bh,
         e,
-        'sd_mTLNV3ByYE3n7fCk',
+        'sd_xCLHfd1kFRljVi9Z',
         spanInst,
-        'sd_mTLNV3ByYE3n7fCk'
+        'sd_xCLHfd1kFRljVi9Z'
       );
     }
   }
 
-  async sd_ooMu5H8zQcCoxSbp(bh, parentSpanInst) {
+  async sd_n4jXOMGtsaexLKge(bh, parentSpanInst) {
+    try {
+      bh.web.res.status(200).send(bh.result);
+
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_n4jXOMGtsaexLKge');
+    }
+  }
+
+  async sd_ORuWzMgWXrZsktsB(bh, parentSpanInst) {
     const spanInst = this.tracerService.createSpan(
-      'sd_ooMu5H8zQcCoxSbp',
+      'sd_ORuWzMgWXrZsktsB',
+      parentSpanInst
+    );
+    try {
+      bh.search = {
+        collection: 'scan',
+      };
+      this.tracerService.sendData(spanInst, bh);
+      bh = await this.sd_m5UC8jWaKVZDLlzN(bh, parentSpanInst);
+      //appendnew_next_sd_ORuWzMgWXrZsktsB
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(
+        bh,
+        e,
+        'sd_ORuWzMgWXrZsktsB',
+        spanInst,
+        'sd_ORuWzMgWXrZsktsB'
+      );
+    }
+  }
+
+  async sd_m5UC8jWaKVZDLlzN(bh, parentSpanInst) {
+    const spanInst = this.tracerService.createSpan(
+      'sd_m5UC8jWaKVZDLlzN',
       parentSpanInst
     );
     try {
@@ -308,132 +342,106 @@ export class bin {
       bh.result = outputVariables.local.result;
 
       this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_nyT13swTRIFdSWGW(bh, parentSpanInst);
-      //appendnew_next_sd_ooMu5H8zQcCoxSbp
+      bh = await this.sd_pcg4qrooMD5YKL3y(bh, parentSpanInst);
+      //appendnew_next_sd_m5UC8jWaKVZDLlzN
       return bh;
     } catch (e) {
       return await this.errorHandler(
         bh,
         e,
-        'sd_ooMu5H8zQcCoxSbp',
+        'sd_m5UC8jWaKVZDLlzN',
         spanInst,
-        'sd_ooMu5H8zQcCoxSbp'
+        'sd_m5UC8jWaKVZDLlzN'
       );
     }
   }
 
-  async sd_nyT13swTRIFdSWGW(bh, parentSpanInst) {
+  async sd_pcg4qrooMD5YKL3y(bh, parentSpanInst) {
     const spanInst = this.tracerService.createSpan(
-      'sd_nyT13swTRIFdSWGW',
+      'sd_pcg4qrooMD5YKL3y',
+      parentSpanInst
+    );
+    try {
+      if (
+        this.sdService.operators['nempty'](
+          bh.result,
+          undefined,
+          undefined,
+          undefined
+        )
+      ) {
+        bh = await this.sd_Tf9eXOEaV8HV5Nij(bh, parentSpanInst);
+      } else {
+        bh = await this.sd_d3PgrIzjt8eIdH3i(bh, parentSpanInst);
+      }
+      this.tracerService.sendData(spanInst, bh);
+
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(
+        bh,
+        e,
+        'sd_pcg4qrooMD5YKL3y',
+        spanInst,
+        'sd_pcg4qrooMD5YKL3y'
+      );
+    }
+  }
+
+  async sd_Tf9eXOEaV8HV5Nij(bh, parentSpanInst) {
+    const spanInst = this.tracerService.createSpan(
+      'sd_Tf9eXOEaV8HV5Nij',
       parentSpanInst
     );
     try {
       bh.status = 200;
       this.tracerService.sendData(spanInst, bh);
-      await this.sd_tt5o5pFVCvAimhyj(bh, parentSpanInst);
-      //appendnew_next_sd_nyT13swTRIFdSWGW
+      await this.sd_XU9Uu4adCscg58C3(bh, parentSpanInst);
+      //appendnew_next_sd_Tf9eXOEaV8HV5Nij
       return bh;
     } catch (e) {
       return await this.errorHandler(
         bh,
         e,
-        'sd_nyT13swTRIFdSWGW',
+        'sd_Tf9eXOEaV8HV5Nij',
         spanInst,
-        'sd_nyT13swTRIFdSWGW'
+        'sd_Tf9eXOEaV8HV5Nij'
       );
     }
   }
 
-  async sd_tt5o5pFVCvAimhyj(bh, parentSpanInst) {
+  async sd_XU9Uu4adCscg58C3(bh, parentSpanInst) {
     try {
       bh.web.res.status(bh.status).send(bh.result);
 
       return bh;
     } catch (e) {
-      return await this.errorHandler(bh, e, 'sd_tt5o5pFVCvAimhyj');
+      return await this.errorHandler(bh, e, 'sd_XU9Uu4adCscg58C3');
     }
   }
 
-  async sd_ooyjEiltj7BEm6am(bh, parentSpanInst) {
+  async sd_d3PgrIzjt8eIdH3i(bh, parentSpanInst) {
     const spanInst = this.tracerService.createSpan(
-      'sd_ooyjEiltj7BEm6am',
-      parentSpanInst
-    );
-    try {
-      bh.collection = 'users';
-      bh.body = bh.input.body;
-      this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_aKgNG8IXuoD7sxC2(bh, parentSpanInst);
-      //appendnew_next_sd_ooyjEiltj7BEm6am
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_ooyjEiltj7BEm6am',
-        spanInst,
-        'sd_ooyjEiltj7BEm6am'
-      );
-    }
-  }
-
-  async sd_aKgNG8IXuoD7sxC2(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_aKgNG8IXuoD7sxC2',
-      parentSpanInst
-    );
-    try {
-      bh.result = await MongoPersistance.getInstance().insertOne(
-        'sd_ajFrSs3mQRYSN97Z',
-        bh.collection,
-        bh.body,
-        bh.option,
-        bh.option
-      );
-      this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_sFwfBel8hPFdNdBT(bh, parentSpanInst);
-      //appendnew_next_sd_aKgNG8IXuoD7sxC2
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_aKgNG8IXuoD7sxC2',
-        spanInst,
-        'sd_aKgNG8IXuoD7sxC2'
-      );
-    }
-  }
-
-  async sd_sFwfBel8hPFdNdBT(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_sFwfBel8hPFdNdBT',
+      'sd_d3PgrIzjt8eIdH3i',
       parentSpanInst
     );
     try {
       bh.status = 200;
+      bh.result = {
+        message: '0 scan payments found',
+      };
       this.tracerService.sendData(spanInst, bh);
-      await this.sd_4DnfHsO5cvxZBJ12(bh, parentSpanInst);
-      //appendnew_next_sd_sFwfBel8hPFdNdBT
+      await this.sd_XU9Uu4adCscg58C3(bh, parentSpanInst);
+      //appendnew_next_sd_d3PgrIzjt8eIdH3i
       return bh;
     } catch (e) {
       return await this.errorHandler(
         bh,
         e,
-        'sd_sFwfBel8hPFdNdBT',
+        'sd_d3PgrIzjt8eIdH3i',
         spanInst,
-        'sd_sFwfBel8hPFdNdBT'
+        'sd_d3PgrIzjt8eIdH3i'
       );
-    }
-  }
-
-  async sd_4DnfHsO5cvxZBJ12(bh, parentSpanInst) {
-    try {
-      bh.web.res.status(bh.status).send(bh.result);
-
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(bh, e, 'sd_4DnfHsO5cvxZBJ12');
     }
   }
 
@@ -458,5 +466,5 @@ export class bin {
       throw e;
     }
   }
-  //appendnew_flow_bin_Catch
+  //appendnew_flow_scan_Catch
 }

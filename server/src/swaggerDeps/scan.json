@@ -1,5 +1,5 @@
 {
-    "/add-to-bin": {
+    "/scan-payment": {
         "post": {
             "summary": "",
             "description": "",
@@ -8,11 +8,11 @@
             "parameters": [],
             "responses": {},
             "tags": [
-                "bin"
+                "scan"
             ]
         }
     },
-    "/get-bin": {
+    "/get-scan-payments": {
         "get": {
             "summary": "",
             "description": "",
@@ -21,20 +21,7 @@
             "parameters": [],
             "responses": {},
             "tags": [
-                "bin"
-            ]
-        }
-    },
-    "/restore-from-bin": {
-        "post": {
-            "summary": "",
-            "description": "",
-            "consumes": [],
-            "produces": [],
-            "parameters": [],
-            "responses": {},
-            "tags": [
-                "bin"
+                "scan"
             ]
         }
     }

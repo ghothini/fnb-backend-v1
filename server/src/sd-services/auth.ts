@@ -930,6 +930,7 @@ export class auth {
         bh.option
       );
       this.tracerService.sendData(spanInst, bh);
+      bh = await this.sendEmail(bh, parentSpanInst);
       //appendnew_next_sd_tWvi321XyzGdzHq1
       return bh;
     } catch (e) {
@@ -939,6 +940,90 @@ export class auth {
         'sd_tWvi321XyzGdzHq1',
         spanInst,
         'sd_tWvi321XyzGdzHq1'
+      );
+    }
+  }
+
+  async sendEmail(bh, parentSpanInst) {
+    const spanInst = this.tracerService.createSpan('sendEmail', parentSpanInst);
+    try {
+      bh.status = 200;
+      bh.payload = {
+        to: bh.input.body.email,
+        subject: 'FNB ACCOUNT',
+        from: 'FNB',
+        ptag: `<p>Your Account has been created successfully</p>
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/First_National_Bank_Logo.svg/1200px-First_National_Bank_Logo.svg.png" alt="Example Image" width="250" height="100"  class="image">
+    `,
+      };
+      this.tracerService.sendData(spanInst, bh);
+      bh = await this.sd_3H8LefEtmRLAuSHY(bh, parentSpanInst);
+      //appendnew_next_sendEmail
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(
+        bh,
+        e,
+        'sd_IqRDFPTyLhPvUIrA',
+        spanInst,
+        'sendEmail'
+      );
+    }
+  }
+
+  async sd_3H8LefEtmRLAuSHY(bh, parentSpanInst) {
+    const spanInst = this.tracerService.createSpan(
+      'sd_3H8LefEtmRLAuSHY',
+      parentSpanInst
+    );
+    try {
+      let mailConfigObj = this.sdService.getConfigObj(
+        'emailout-config',
+        'sd_Y7tj22emRRoCDJdJ'
+      );
+      let server = mailConfigObj.server;
+      let port = mailConfigObj.port;
+      let secure = mailConfigObj.secure;
+      let tls = mailConfigObj.tls;
+      let userid = mailConfigObj.userid;
+      let password = mailConfigObj.password;
+      let emailServiceInstance = EmailOutService.getInstance();
+      bh.result = await emailServiceInstance.sendEmail(
+        {
+          server,
+          port,
+          secure,
+          tls,
+        },
+        {
+          userid,
+          password,
+          to: bh.payload.to,
+          subject: bh.payload.subject,
+          body: bh.payload.body,
+          cc: undefined,
+          bcc: undefined,
+          from: bh.payload.from,
+          html: bh.payload.ptag,
+          iCal: undefined,
+          routingOptions: undefined,
+          contentOptions: undefined,
+          securityOptions: undefined,
+          headerOptions: undefined,
+          attachments: [],
+        }
+      );
+      this.tracerService.sendData(spanInst, bh);
+      await this.sd_TVW1YChwcueLIbBM(bh, parentSpanInst);
+      //appendnew_next_sd_3H8LefEtmRLAuSHY
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(
+        bh,
+        e,
+        'sd_3H8LefEtmRLAuSHY',
+        spanInst,
+        'sd_3H8LefEtmRLAuSHY'
       );
     }
   }
@@ -1500,9 +1585,8 @@ export class auth {
     );
     try {
       bh.search = {
-        collection: 'files.files',
+        collection: 'users',
       };
-
       this.tracerService.sendData(spanInst, bh);
       bh = await this.sd_oqDjnw4MPRLCxxh8(bh, parentSpanInst);
       //appendnew_next_sd_XuI5ang6rLg5end7
@@ -1580,27 +1664,16 @@ export class auth {
       parentSpanInst
     );
     try {
-      bh.result = bh.result;
-
-      const data = bh.result.map((_data) => {
-        return _data.filename;
+      bh.filter = { filename: bh.input.params.filename };
+      bh.result.forEach((account) => {
+        if (account.idDocument === bh.input.params.filename) {
+          bh.filename = account.idFileName;
+        }
+        if (account.paySlipDocument === bh.input.params.filename) {
+          bh.filename = account.paySlipFileName;
+        }
       });
-
-      data.forEach((item) => {
-        bh.filter = { filename: item };
-      });
-
-      console.log(1111, bh.filter);
-
-      // for(let i = 0;i<=data.length - 1;i++)
-      // {
-      //     if(data[i] == bh.filter.filename)
-      //     {
-      //         bh.data = bh.result[i];
-      //         this.getDoc(bh.data)
-      //     }
-      // }
-
+      bh.filename = bh.filename.split('.')[1];
       this.tracerService.sendData(spanInst, bh);
       bh = await this.sd_6lGEPgVdLggcxVNd(bh, parentSpanInst);
       //appendnew_next_sd_N43Evb5ywqf9HLqZ
@@ -1629,7 +1702,7 @@ export class auth {
         bh
       );
       this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_pXcwiQfXrNd01xyk(bh, parentSpanInst);
+      bh = await this.sd_nY2koT84Hhv37baG(bh, parentSpanInst);
       //appendnew_next_sd_6lGEPgVdLggcxVNd
       return bh;
     } catch (e) {
@@ -1643,35 +1716,90 @@ export class auth {
     }
   }
 
-  async sd_pXcwiQfXrNd01xyk(bh, parentSpanInst) {
+  async sd_nY2koT84Hhv37baG(bh, parentSpanInst) {
     const spanInst = this.tracerService.createSpan(
-      'sd_pXcwiQfXrNd01xyk',
+      'sd_nY2koT84Hhv37baG',
       parentSpanInst
     );
     try {
-      bh.file = bh.result;
-      console.log('Filedata', bh.file.metadata);
+      if (
+        this.sdService.operators['eq'](bh.filename, 'pdf', undefined, undefined)
+      ) {
+        bh = await this.pdfRes(bh, parentSpanInst);
+      } else if (
+        this.sdService.operators['eq'](bh.filename, 'jpg', undefined, undefined)
+      ) {
+        bh = await this.imagesRes(bh, parentSpanInst);
+      } else if (
+        this.sdService.operators['eq'](bh.filename, 'png', undefined, undefined)
+      ) {
+        bh = await this.imagesRes(bh, parentSpanInst);
+      } else if (
+        this.sdService.operators['eq'](
+          bh.filename,
+          'webp',
+          undefined,
+          undefined
+        )
+      ) {
+        bh = await this.imagesRes(bh, parentSpanInst);
+      } else if (
+        this.sdService.operators['eq'](
+          bh.filename,
+          'docx',
+          undefined,
+          undefined
+        )
+      ) {
+        bh = await this.docxRes(bh, parentSpanInst);
+      }
       this.tracerService.sendData(spanInst, bh);
-      await this.sd_eYpGZ5fRcnMTKcLL(bh, parentSpanInst);
-      //appendnew_next_sd_pXcwiQfXrNd01xyk
+
       return bh;
     } catch (e) {
       return await this.errorHandler(
         bh,
         e,
-        'sd_pXcwiQfXrNd01xyk',
+        'sd_nY2koT84Hhv37baG',
         spanInst,
-        'sd_pXcwiQfXrNd01xyk'
+        'sd_nY2koT84Hhv37baG'
       );
     }
   }
 
-  async sd_eYpGZ5fRcnMTKcLL(bh, parentSpanInst) {
+  async pdfRes(bh, parentSpanInst) {
     try {
-      bh.file.downloadStream.pipe(bh.web.res);
+      bh.web.res.set({ 'Content-Type': 'application/pdf' });
+
+      bh.result.downloadStream.pipe(bh.web.res);
       return bh;
     } catch (e) {
-      return await this.errorHandler(bh, e, 'sd_eYpGZ5fRcnMTKcLL');
+      return await this.errorHandler(bh, e, 'sd_U51XDCPzRTBa6Klc');
+    }
+  }
+
+  async imagesRes(bh, parentSpanInst) {
+    try {
+      bh.web.res.set({ 'Content-Type': 'image/png' });
+
+      bh.result.downloadStream.pipe(bh.web.res);
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_SHu4QvldGZebnLYU');
+    }
+  }
+
+  async docxRes(bh, parentSpanInst) {
+    try {
+      bh.web.res.set({
+        'Content-Type':
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      });
+
+      bh.result.downloadStream.pipe(bh.web.res);
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_SlTlV5aYYJWkZbgJ');
     }
   }
 
@@ -1696,6 +1824,15 @@ export class auth {
         spanInst,
         'sd_zB6RCba7lqBpwZY5'
       );
+    }
+  }
+
+  async sd_eYpGZ5fRcnMTKcLL(bh, parentSpanInst) {
+    try {
+      bh.result.pipe(bh.web.res);
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_eYpGZ5fRcnMTKcLL');
     }
   }
 

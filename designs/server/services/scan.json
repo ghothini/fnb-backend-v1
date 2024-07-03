@@ -1,0 +1,650 @@
+[
+    {
+        "id": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "type": "tab",
+        "createdDate": "2024-06-18T09:24:13.541Z",
+        "label": "scan",
+        "disabled": false,
+        "info": "",
+        "functionSeq": 0,
+        "generateNext": true,
+        "serviceName": "scan",
+        "relativeParentPath": ""
+    },
+    {
+        "id": "sd_RwvUxn1sZ64NYgYW",
+        "type": "HttpIn",
+        "z": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "Add scan payment",
+        "path": "/scan-payment",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "post",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "useDataModel": false,
+        "dataModelIsArray": false,
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
+        "category": "HTTP",
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "sd_uTqAOLP9kDsUMA9U"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "uploadpath": {
+                "type": "str",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "scan",
+        "functionName": "sd_RwvUxn1sZ64NYgYW"
+    },
+    {
+        "id": "sd_iNWHAyd2lnvsRNm6",
+        "type": "Mongodb",
+        "z": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "databaseConfig": "sd_ajFrSs3mQRYSN97Z",
+        "collection": "\"scan\"",
+        "options": "bh.option",
+        "resultMapping": "bh.result",
+        "operation": "insertOne",
+        "argumentArray": [
+            "document",
+            "options"
+        ],
+        "aggregate": "",
+        "operations": "",
+        "query": "bh",
+        "fieldOrSpec": "",
+        "filter": "",
+        "key": "",
+        "docId": "",
+        "indexName": "",
+        "replacement": "",
+        "update": "",
+        "xAxis": "",
+        "yAxis": "",
+        "indexes": "",
+        "docs": "",
+        "document": "bh.body",
+        "newName": "",
+        "doc": "",
+        "filePath": "",
+        "fileName": "",
+        "pipeline": "",
+        "functionName": "sd_iNWHAyd2lnvsRNm6",
+        "category": "Storage",
+        "x": 305,
+        "y": 100,
+        "wires": [
+            [
+                "sd_86NU4dXfB50Vuq5k"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "collection": {
+                "type": "str",
+                "value": "scan",
+                "constant": false
+            },
+            "options": {
+                "type": "bh",
+                "value": "option",
+                "constant": false
+            },
+            "resultMapping": {
+                "type": "bh",
+                "value": "result",
+                "constant": false
+            },
+            "query": {
+                "type": "bh",
+                "value": "",
+                "constant": false
+            },
+            "document": {
+                "type": "bh",
+                "value": "body",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "scan",
+        "generated": true
+    },
+    {
+        "id": "sd_86NU4dXfB50Vuq5k",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "bh.payload = {\n    to: bh.input.body.email,\n    subject: 'Payment Made',\n    from: 'FNB',\n    ptag:`\n    <p>Payment made R${bh.body.amount}</p>.\n    <img src=\"https://upload.wikimedia.org/wikipedia/en/thumb/8/80/First_National_Bank_Logo.svg/1200px-First_National_Bank_Logo.svg.png\" alt=\"Example Image\" width=\"250\" height=\"100\">\n    ` \n}\n\nconsole.log(bh.payload)\n\nbh.status = 200;",
+        "functionName": "sd_86NU4dXfB50Vuq5k",
+        "category": "Function",
+        "x": 385,
+        "y": 100,
+        "wires": [
+            [
+                "sd_xCLHfd1kFRljVi9Z"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "scan",
+        "generated": true
+    },
+    {
+        "id": "sd_uTqAOLP9kDsUMA9U",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "bh.body = bh.input.body",
+        "functionName": "sd_uTqAOLP9kDsUMA9U",
+        "category": "Function",
+        "x": 225,
+        "y": 100,
+        "wires": [
+            [
+                "sd_iNWHAyd2lnvsRNm6"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "scan",
+        "generated": true
+    },
+    {
+        "id": "sd_n4jXOMGtsaexLKge",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh",
+            "value": "result",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "num",
+            "value": 200,
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": 200,
+            "obj": "bh.result",
+            "send": "bh.result"
+        },
+        "dataModelIsArray": false,
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_n4jXOMGtsaexLKge",
+        "category": "HTTP",
+        "x": 585,
+        "y": 100,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "scan",
+        "generated": true
+    },
+    {
+        "id": "sd_xCLHfd1kFRljVi9Z",
+        "type": "EmailOut",
+        "z": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "emailoutconfig": "sd_Y7tj22emRRoCDJdJ",
+        "from": "bh.payload.from",
+        "to": "bh.payload.to",
+        "cc": "undefined",
+        "bcc": "undefined",
+        "subject": "bh.payload.subject",
+        "body": "undefined",
+        "html": "bh.payload.ptag",
+        "attachment": [],
+        "attachmentList": {},
+        "switchStates": {
+            "attachment": "Map"
+        },
+        "editableListData": {},
+        "routingoptions": "undefined",
+        "iCal": "undefined",
+        "contentoptions": "undefined",
+        "headeroptions": "undefined",
+        "securityoptions": "undefined",
+        "outputs": 1,
+        "resultMapping": "bh.result",
+        "functionName": "sd_xCLHfd1kFRljVi9Z",
+        "category": "Messaging",
+        "x": 485,
+        "y": 100,
+        "wires": [
+            [
+                "sd_n4jXOMGtsaexLKge"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "from": {
+                "type": "bh",
+                "value": "payload.from",
+                "nullable": "true",
+                "nullableValue": "undefined",
+                "constant": false
+            },
+            "to": {
+                "type": "bh",
+                "value": "payload.to",
+                "nullable": "true",
+                "nullableValue": "undefined",
+                "constant": false
+            },
+            "cc": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "undefined",
+                "constant": false
+            },
+            "bcc": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "undefined",
+                "constant": false
+            },
+            "subject": {
+                "type": "bh",
+                "value": "payload.subject",
+                "nullable": "true",
+                "nullableValue": "undefined",
+                "constant": false
+            },
+            "body": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "undefined",
+                "constant": false
+            },
+            "html": {
+                "type": "bh",
+                "value": "payload.ptag",
+                "nullable": "true",
+                "nullableValue": "undefined",
+                "constant": false
+            },
+            "routingoptions": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "undefined",
+                "constant": false
+            },
+            "iCal": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "undefined",
+                "constant": false
+            },
+            "contentoptions": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "undefined",
+                "constant": false
+            },
+            "headeroptions": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "undefined",
+                "constant": false
+            },
+            "securityoptions": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "undefined",
+                "constant": false
+            },
+            "resultMapping": {
+                "type": "bh",
+                "value": "result",
+                "nullable": "true",
+                "nullableValue": "undefined",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "scan",
+        "generated": true
+    },
+    {
+        "id": "sd_RQDnrdIjlCmdRy1T",
+        "type": "HttpIn",
+        "z": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "Get scan payments",
+        "path": "/get-scan-payments",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "get",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "useDataModel": false,
+        "dataModelIsArray": false,
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
+        "category": "HTTP",
+        "x": 125,
+        "y": 220,
+        "wires": [
+            [
+                "sd_ORuWzMgWXrZsktsB"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "uploadpath": {
+                "type": "str",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "scan",
+        "functionName": "sd_RQDnrdIjlCmdRy1T"
+    },
+    {
+        "id": "sd_ORuWzMgWXrZsktsB",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "bh.search = {\n    collection: 'scan'\n}",
+        "functionName": "sd_ORuWzMgWXrZsktsB",
+        "category": "Function",
+        "x": 245,
+        "y": 220,
+        "wires": [
+            [
+                "sd_m5UC8jWaKVZDLlzN"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "scan",
+        "generated": true
+    },
+    {
+        "id": "sd_m5UC8jWaKVZDLlzN",
+        "type": "CallService",
+        "z": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "outputs": 1,
+        "isValidNode": true,
+        "noerr": 0,
+        "service": {
+            "id": "SSD_SERVICE_ID_sd_rnBmVBMNMAATcuPX",
+            "type": "tab",
+            "createdDate": "2024-05-13T10:00:34.161Z",
+            "label": "auth",
+            "disabled": false,
+            "info": "",
+            "functionSeq": 0
+        },
+        "flow": {
+            "flowId": "sd_ygLudNMItp9Xqotm",
+            "flowName": "checkIfExist"
+        },
+        "inputVariables": [
+            {
+                "key": "searchObj",
+                "map": true,
+                "valueType": "bh",
+                "value": "search"
+            }
+        ],
+        "bhVariables": [],
+        "outputMapping": [
+            {
+                "mapVarType": "local",
+                "key": "result",
+                "valueType": "bh",
+                "value": "result",
+                "mapVarName": "result",
+                "localVar": "bh.result"
+            }
+        ],
+        "callService": "./auth",
+        "startName": "checkIfExist",
+        "inputParams": [
+            "bh.search"
+        ],
+        "accept_bh": false,
+        "functionName": "sd_m5UC8jWaKVZDLlzN",
+        "category": "General",
+        "x": 325,
+        "y": 220,
+        "wires": [
+            [
+                "sd_pcg4qrooMD5YKL3y"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "scan",
+        "generated": true
+    },
+    {
+        "id": "sd_pcg4qrooMD5YKL3y",
+        "type": "Switch",
+        "z": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "property": "result",
+        "propertyType": "bh",
+        "propertyGv": "bh.result",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "functionName": "sd_pcg4qrooMD5YKL3y",
+        "category": "Function",
+        "x": 405,
+        "y": 220,
+        "wires": [
+            [
+                "sd_Tf9eXOEaV8HV5Nij"
+            ],
+            [
+                "sd_d3PgrIzjt8eIdH3i"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "scan",
+        "generated": true
+    },
+    {
+        "id": "sd_d3PgrIzjt8eIdH3i",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "bh.status = 200;\nbh.result = {\n    message:\"0 scan payments found\"\n}",
+        "functionName": "sd_d3PgrIzjt8eIdH3i",
+        "category": "Function",
+        "x": 505,
+        "y": 260,
+        "wires": [
+            [
+                "sd_XU9Uu4adCscg58C3"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "scan",
+        "generated": true
+    },
+    {
+        "id": "sd_XU9Uu4adCscg58C3",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh",
+            "value": "result",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "bh",
+            "value": "status",
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": "bh.status",
+            "obj": "bh.result",
+            "send": "bh.result"
+        },
+        "dataModelIsArray": false,
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_XU9Uu4adCscg58C3",
+        "category": "HTTP",
+        "x": 605,
+        "y": 220,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "scan",
+        "generated": true
+    },
+    {
+        "id": "sd_Tf9eXOEaV8HV5Nij",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_NvVjyRu4ULx4y5wE",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "bh.status = 200;",
+        "functionName": "sd_Tf9eXOEaV8HV5Nij",
+        "category": "Function",
+        "x": 505,
+        "y": 180,
+        "wires": [
+            [
+                "sd_XU9Uu4adCscg58C3"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "scan",
+        "generated": true
+    }
+]
