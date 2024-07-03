@@ -2742,13 +2742,16 @@ export class auth {
       parentSpanInst
     );
     try {
+      const bcrypt = require('bcrypt');
       bh.result = bh.result[0];
-      bh.verifiedUser = false;
-      if (bh.result.password) {
-        bh.verifiedUser = true;
-      }
+      bh.match = await bcrypt.compare(
+        bh.input.body.password,
+        bh.result.password
+      );
+
+      console.log('BH Match', bh.match);
       this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_Fh1c3d0gDPUWltTx(bh, parentSpanInst);
+      bh = await this.sd_TOURp9qKIevsDjjf(bh, parentSpanInst);
       //appendnew_next_sd_FllQj01ptdt9LAnU
       return bh;
     } catch (e) {
@@ -2758,64 +2761,6 @@ export class auth {
         'sd_FllQj01ptdt9LAnU',
         spanInst,
         'sd_FllQj01ptdt9LAnU'
-      );
-    }
-  }
-
-  async sd_Fh1c3d0gDPUWltTx(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_Fh1c3d0gDPUWltTx',
-      parentSpanInst
-    );
-    try {
-      if (
-        this.sdService.operators['true'](
-          bh.verifiedUser,
-          undefined,
-          undefined,
-          undefined
-        )
-      ) {
-        bh = await this.sd_Ehii9baB9fyHFBt8(bh, parentSpanInst);
-      } else {
-        bh = await this.sd_TmekbtScVdYg24Cr(bh, parentSpanInst);
-      }
-      this.tracerService.sendData(spanInst, bh);
-
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_Fh1c3d0gDPUWltTx',
-        spanInst,
-        'sd_Fh1c3d0gDPUWltTx'
-      );
-    }
-  }
-
-  async sd_Ehii9baB9fyHFBt8(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_Ehii9baB9fyHFBt8',
-      parentSpanInst
-    );
-    try {
-      const bcrypt = require('bcrypt');
-      bh.match = await bcrypt.compare(
-        bh.input.body.password,
-        bh.result.password
-      );
-      this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_TOURp9qKIevsDjjf(bh, parentSpanInst);
-      //appendnew_next_sd_Ehii9baB9fyHFBt8
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_Ehii9baB9fyHFBt8',
-        spanInst,
-        'sd_Ehii9baB9fyHFBt8'
       );
     }
   }
@@ -2895,6 +2840,7 @@ export class auth {
       bh.result = {
         message: "PASSWORD DON'T MATCH",
       };
+      console.log('NO Match match');
 
       this.tracerService.sendData(spanInst, bh);
       await this.sd_olfV7ccYpH7LQ2CJ(bh, parentSpanInst);
@@ -2911,39 +2857,14 @@ export class auth {
     }
   }
 
-  async sd_TmekbtScVdYg24Cr(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_TmekbtScVdYg24Cr',
-      parentSpanInst
-    );
-    try {
-      bh.status = 200;
-      bh.result = {
-        isNotApprovedAcc: 'Account application not approved yet',
-      };
-
-      this.tracerService.sendData(spanInst, bh);
-      await this.sd_olfV7ccYpH7LQ2CJ(bh, parentSpanInst);
-      //appendnew_next_sd_TmekbtScVdYg24Cr
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_TmekbtScVdYg24Cr',
-        spanInst,
-        'sd_TmekbtScVdYg24Cr'
-      );
-    }
-  }
-
   async sd_Gznm98dxQtDk93Lf(bh, parentSpanInst) {
     const spanInst = this.tracerService.createSpan(
       'sd_Gznm98dxQtDk93Lf',
       parentSpanInst
     );
     try {
-      bh.status = 200;
+      console.log('Error Error');
+      bh.status = 404;
       bh.result = {
         message: "User don't exist",
       };
