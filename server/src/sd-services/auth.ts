@@ -952,7 +952,7 @@ export class auth {
         to: bh.input.body.email,
         subject: 'FNB ACCOUNT',
         from: 'FNB',
-        ptag: `<p>Your Account has been created successfully</p>
+        ptag: `<p>Your registration with FNB was successful.</p>
     <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/First_National_Bank_Logo.svg/1200px-First_National_Bank_Logo.svg.png" alt="Example Image" width="250" height="100"  class="image">
     `,
       };
@@ -1752,6 +1752,15 @@ export class auth {
         )
       ) {
         bh = await this.docxRes(bh, parentSpanInst);
+      } else if (
+        this.sdService.operators['eq'](
+          bh.filename,
+          'jpeg',
+          undefined,
+          undefined
+        )
+      ) {
+        bh = await this.imagesRes(bh, parentSpanInst);
       }
       this.tracerService.sendData(spanInst, bh);
 
@@ -2111,7 +2120,7 @@ export class auth {
           contentOptions: undefined,
           securityOptions: undefined,
           headerOptions: undefined,
-          attachments: [],
+          attachments: undefined,
         }
       );
       this.tracerService.sendData(spanInst, bh);
