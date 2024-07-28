@@ -145,6 +145,38 @@ export class scan {
         this.generatedMiddlewares
       )
     );
+
+    this.app['get'](
+      `${this.serviceBasePath}/get-scan/:email`,
+      cookieParser(),
+      this.sdService.getMiddlesWaresBySequenceId(
+        null,
+        'pre',
+        this.generatedMiddlewares
+      ),
+
+      async (req, res, next) => {
+        let bh: any = {};
+        try {
+          bh = this.sdService.__constructDefault(
+            { local: {}, input: {} },
+            req,
+            res,
+            next
+          );
+          let parentSpanInst = null;
+          bh = await this.sd_j36y9X1Aj9vtNNCL(bh, parentSpanInst);
+          //appendnew_next_sd_w5x0P7YXKkCQg11o
+        } catch (e) {
+          return await this.errorHandler(bh, e, 'sd_w5x0P7YXKkCQg11o');
+        }
+      },
+      this.sdService.getMiddlesWaresBySequenceId(
+        null,
+        'post',
+        this.generatedMiddlewares
+      )
+    );
     //appendnew_flow_scan_HttpIn
   }
   //   service flows_scan
@@ -440,6 +472,66 @@ export class scan {
         spanInst,
         'sd_d3PgrIzjt8eIdH3i'
       );
+    }
+  }
+
+  async sd_j36y9X1Aj9vtNNCL(bh, parentSpanInst) {
+    const spanInst = this.tracerService.createSpan(
+      'sd_j36y9X1Aj9vtNNCL',
+      parentSpanInst
+    );
+    try {
+      // bh.query = {"email":bh.input.body.email}
+      this.tracerService.sendData(spanInst, bh);
+      bh = await this.sd_oqCwEQkJX5MXrSdk(bh, parentSpanInst);
+      //appendnew_next_sd_j36y9X1Aj9vtNNCL
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(
+        bh,
+        e,
+        'sd_j36y9X1Aj9vtNNCL',
+        spanInst,
+        'sd_j36y9X1Aj9vtNNCL'
+      );
+    }
+  }
+
+  async sd_oqCwEQkJX5MXrSdk(bh, parentSpanInst) {
+    const spanInst = this.tracerService.createSpan(
+      'sd_oqCwEQkJX5MXrSdk',
+      parentSpanInst
+    );
+    try {
+      bh.result = await MongoPersistance.getInstance().find(
+        'sd_ajFrSs3mQRYSN97Z',
+        'electricity',
+        bh.query,
+        bh.option,
+        bh.option
+      );
+      this.tracerService.sendData(spanInst, bh);
+      await this.sd_bBQybBFicmt1GA8S(bh, parentSpanInst);
+      //appendnew_next_sd_oqCwEQkJX5MXrSdk
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(
+        bh,
+        e,
+        'sd_oqCwEQkJX5MXrSdk',
+        spanInst,
+        'sd_oqCwEQkJX5MXrSdk'
+      );
+    }
+  }
+
+  async sd_bBQybBFicmt1GA8S(bh, parentSpanInst) {
+    try {
+      bh.web.res.status(200).send(bh.result);
+
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_bBQybBFicmt1GA8S');
     }
   }
 

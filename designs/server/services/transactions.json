@@ -304,7 +304,7 @@
         "viewType": "common",
         "nodeType": "flow",
         "name": "",
-        "script": "bh.query = {\"email\":bh.input.body.email}",
+        "script": "// bh.query = {\"email\":bh.input.body.email}",
         "functionName": "sd_coguSJrtbfTHXWh0",
         "category": "Function",
         "x": 185,
