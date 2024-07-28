@@ -30,6 +30,7 @@
         "acceptFileUpload": false,
         "useDataModel": false,
         "dataModelIsArray": false,
+        "uploadFileOptions": "",
         "erd": "",
         "erdName": "",
         "entity": "",
@@ -213,6 +214,7 @@
             "send": "bh.result"
         },
         "dataModelIsArray": false,
+        "cookies": [],
         "inputs": 1,
         "outputs": 0,
         "erd": "",
@@ -436,7 +438,7 @@
         "viewType": "common",
         "nodeType": "flow",
         "name": "",
-        "script": "bh.search = {\n    collection: 'scan'\n}",
+        "script": "bh.query = {\"email\":bh.input.body.email}",
         "functionName": "sd_ORuWzMgWXrZsktsB",
         "category": "Function",
         "x": 245,
@@ -599,6 +601,7 @@
             "send": "bh.result"
         },
         "dataModelIsArray": false,
+        "cookies": [],
         "inputs": 1,
         "outputs": 0,
         "erd": "",

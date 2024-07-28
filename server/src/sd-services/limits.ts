@@ -82,7 +82,7 @@ export class limits {
     log.debug('mounting all paths for service :: limits');
 
     this.app['get'](
-      `${this.serviceBasePath}/get-limit/:_id`,
+      `${this.serviceBasePath}/get-limit/:email`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
         null,
@@ -243,22 +243,9 @@ export class limits {
       parentSpanInst
     );
     try {
-      bh.result = bh.result;
-      bh.filter = { _id: bh.input.params._id };
-      bh.data;
-      const data = bh.result.map((_data) => {
-        return _data._id;
-      });
-
-      for (let i = 0; i <= data.length - 1; i++) {
-        if (data[i] == bh.filter._id) {
-          console.log('finally !!!', bh.result[i]);
-          bh.data = bh.result[i];
-        }
-      }
-
-      console.log('i data ', bh.data);
-
+      bh.result = bh.result.find(
+        (_data) => _data.email === bh.input.params.email
+      );
       this.tracerService.sendData(spanInst, bh);
       await this.sd_i8glpJhLEHGA7lnP(bh, parentSpanInst);
       //appendnew_next_sd_4lwsCLYHA4Ictn4N
@@ -276,7 +263,7 @@ export class limits {
 
   async sd_i8glpJhLEHGA7lnP(bh, parentSpanInst) {
     try {
-      bh.web.res.status(200).send(bh.data);
+      bh.web.res.status(200).send(bh.result);
 
       return bh;
     } catch (e) {

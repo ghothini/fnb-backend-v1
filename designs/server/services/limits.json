@@ -18,7 +18,7 @@
         "viewType": "server",
         "nodeType": "start",
         "name": "Get each limits",
-        "path": "/get-limit/:_id",
+        "path": "/get-limit/:email",
         "uploadpath": "",
         "summary": "",
         "description": "",
@@ -204,7 +204,7 @@
         "viewType": "common",
         "nodeType": "flow",
         "name": "",
-        "script": "bh.result = bh.result;\nbh.filter = { '_id': bh.input.params._id};\nbh.data;\nconst data = bh.result.map(_data =>{ return _data._id});\n\nfor(let i = 0;i<=data.length - 1;i++)\n{\n    if(data[i] == bh.filter._id)\n    {\n        console.log(\"finally !!!\", bh.result[i])\n        bh.data = bh.result[i];\n    }\n}\n\n    console.log(\"i data \",bh.data)\n\n",
+        "script": "bh.result = bh.result.find(_data => _data.email === bh.input.params.email);",
         "functionName": "sd_4lwsCLYHA4Ictn4N",
         "category": "Function",
         "x": 405,
@@ -251,7 +251,7 @@
         "headers": {},
         "responseBody": {
             "type": "bh",
-            "value": "data",
+            "value": "result",
             "ssd_typedInputField": true
         },
         "httpcode": {
@@ -263,11 +263,10 @@
         "swaggerResponse": {},
         "responseMapping": {
             "status": 200,
-            "obj": "bh.data",
-            "send": "bh.data"
+            "obj": "bh.result",
+            "send": "bh.result"
         },
         "dataModelIsArray": false,
-        "cookies": [],
         "inputs": 1,
         "outputs": 0,
         "erd": "",
@@ -313,6 +312,7 @@
         "acceptFileUpload": false,
         "useDataModel": false,
         "dataModelIsArray": false,
+        "uploadFileOptions": "",
         "erd": "",
         "erdName": "",
         "entity": "",
@@ -480,6 +480,7 @@
             "send": "bh.result"
         },
         "dataModelIsArray": false,
+        "cookies": [],
         "inputs": 1,
         "outputs": 0,
         "erd": "",

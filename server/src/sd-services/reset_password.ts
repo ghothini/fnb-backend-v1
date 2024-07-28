@@ -516,7 +516,7 @@ export class reset_password {
       parentSpanInst
     );
     try {
-      bh.status = 404;
+      bh.status = 200;
       bh.result = {
         message: "PASSWORD DON'T MATCH",
       };
