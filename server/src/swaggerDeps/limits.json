@@ -1,5 +1,5 @@
 {
-    "/get-limit/:_id": {
+    "/get-limit/:email": {
         "get": {
             "summary": "",
             "description": "",

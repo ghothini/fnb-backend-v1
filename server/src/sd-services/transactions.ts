@@ -550,7 +550,7 @@ export class transactions {
       parentSpanInst
     );
     try {
-      bh.query = { email: bh.input.body.email };
+      // bh.query = {"email":bh.input.body.email}
       this.tracerService.sendData(spanInst, bh);
       bh = await this.sd_yiVJ8tq2oaEdpTQP(bh, parentSpanInst);
       //appendnew_next_sd_BhKSkQyumrSHjcRA
@@ -974,7 +974,7 @@ export class transactions {
       parentSpanInst
     );
     try {
-      bh.query = { email: bh.input.body.email };
+      // bh.query = {"email":bh.input.body.email}
       this.tracerService.sendData(spanInst, bh);
       bh = await this.sd_fAe39LMtHDEx6kuL(bh, parentSpanInst);
       //appendnew_next_sd_BaYQ8yfdXyx0je8Q

@@ -308,9 +308,7 @@ export class scan {
       parentSpanInst
     );
     try {
-      bh.search = {
-        collection: 'scan',
-      };
+      bh.query = { email: bh.input.body.email };
       this.tracerService.sendData(spanInst, bh);
       bh = await this.sd_m5UC8jWaKVZDLlzN(bh, parentSpanInst);
       //appendnew_next_sd_ORuWzMgWXrZsktsB
