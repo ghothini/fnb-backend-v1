@@ -8,7 +8,7 @@ import * as expressSession from 'express-session'; //_splitter_
 export let Middlewares = {
   cors: () => {
     let corsOptions = {
-      origin: ['http://localhost:4200','http://fnb-internal-v1.s3-website-us-east-1.amazonaws.com','http://fnb-external-v1.s3-website-us-east-1.amazonaws.com','http://localhost:65484','http://localhost:50283'],
+      origin: ['http://localhost:4200','http://fnb-internal-v1.s3-website-us-east-1.amazonaws.com','http://fnb-external-v1.s3-website-us-east-1.amazonaws.com','http://localhost:53617','http://localhost:53645'],
 
       credentials: true,
 

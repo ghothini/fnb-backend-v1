@@ -2120,7 +2120,7 @@ export class auth {
           contentOptions: undefined,
           securityOptions: undefined,
           headerOptions: undefined,
-          attachments: undefined,
+          attachments: [],
         }
       );
       this.tracerService.sendData(spanInst, bh);
@@ -3386,7 +3386,7 @@ export class auth {
           contentOptions: undefined,
           securityOptions: undefined,
           headerOptions: undefined,
-          attachments: [],
+          attachments: undefined,
         }
       );
       this.tracerService.sendData(spanInst, bh);

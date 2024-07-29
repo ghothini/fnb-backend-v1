@@ -505,7 +505,7 @@ export class scan {
     try {
       bh.result = await MongoPersistance.getInstance().find(
         'sd_ajFrSs3mQRYSN97Z',
-        'electricity',
+        'scan',
         bh.query,
         bh.option,
         bh.option

@@ -735,7 +735,7 @@
         "nodeType": "flow",
         "name": "",
         "databaseConfig": "sd_ajFrSs3mQRYSN97Z",
-        "collection": "\"electricity\"",
+        "collection": "\"scan\"",
         "options": "bh.option",
         "resultMapping": "bh.result",
         "operation": "find",
@@ -775,7 +775,7 @@
         "__ssdTypeInputs__": {
             "collection": {
                 "type": "str",
-                "value": "electricity",
+                "value": "scan",
                 "constant": false
             },
             "options": {
